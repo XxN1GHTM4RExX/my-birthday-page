@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday Countdown</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      overflow: hidden;
+      /* Fallback background color */
+      background-color: #000;
+      /* Use a local image as the background. Make sure "icicles.jpg" is in the same folder as this file */
+      background-image: url("icicles.jpg");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      background-size: cover;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    
+    /* Countdown Container */
+    #countdown-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+    }
+    
+    #person-name {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    
+    #countdown {
+      font-size: 2em;
+    }
+    
+    /* Doors for transition effect */
+    #doors {
+      display: none; /* Initially hidden */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      pointer-events: none;
+    }
+    
+    #left-door, #right-door {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background-color: #333;
+      transition: transform 2s ease;
+    }
+    
+    #left-door {
+      left: 0;
+      transform: translateX(0);
+    }
+    
+    #right-door {
+      right: 0;
+      transform: translateX(0);
+    }
+    
+    /* Doors open classes */
+    .open-left {
+      transform: translateX(-100%);
+    }
+    
+    .open-right {
+      transform: translateX(100%);
+    }
+    
+    /* Diaporama Section */
+    #diaporama {
+      display: none;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    
+    #slideshow {
+      width: 100%;
+      height: 80%;
+    }
+    
+    .slide {
+      width: 100%;
+      height: 100%;
+      display: none;
+      object-fit: cover;
+    }
+    
+    /* Scrolling Text */
+    #scrolling-text {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    
+    #scrolling-text p {
+      display: inline-block;
+      white-space: nowrap;
+      animation: scrollText 15s linear infinite;
+      font-size: 1.5em;
+      margin: 10px 0;
+    }
+    
+    @keyframes scrollText {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Countdown Section -->
+  <div id="countdown-container">
+    <h1 id="person-name">PRISCA</h1>
+    <div id="countdown">Loading countdown...</div>
+  </div>
+
+  <!-- Doors for transition effect -->
+  <div id="doors">
+    <div id="left-door"></div>
+    <div id="right-door"></div>
+  </div>
+
+  <!-- Diaporama Section -->
+  <div id="diaporama">
+    <div id="slideshow">
+      <!-- Replace these sample slides with your own images/videos -->
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\1.jpg" alt="Slide 1">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Image 2025-03-03 at 20.09.58_f78fc966.jpg" alt="Slide 2">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Image 2025-03-03 at 20.09.58_9675151a.jpg" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Image 2025-03-03 at 20.10.00_0a7a7755.jpg" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Image 2025-03-03 at 20.10.00_47f94702.jpg" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Image 2025-03-03 at 20.10.01_7126b227.jpg" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Image 2025-03-03 at 20.10.01_5882760d.jpg" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Image 2025-03-03 at 20.10.01_5882760d.jpg" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Image 2025-03-03 at 20.10.03_795f9185.jpg" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Image 2025-03-03 at 20.10.03_795f9185.jpg" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Image 2025-03-03 at 20.10.04_0a2d696e.jpg" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Image 2025-03-03 at 20.10.05_975f294d.jpg" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Image 2025-03-03 at 20.10.06_297a8320.jpg" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Image 2025-03-03 at 20.10.06_297a8320.jpg" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Video 2025-03-03 at 20.10.07_9d8cfde9.mp4" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Video 2025-03-03 at 20.10.08_06526f8a.mp4" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Video 2025-03-03 at 20.10.08_ccc9b3fa.mp4" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Video 2025-03-03 at 20.10.09_0bad7654.mp4" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Video 2025-03-03 at 20.10.09_3cbfbbb4.mp4" alt="Slide 3">
+      <img class="slide" src="C:\Users\user\Pictures\PRISCA\WhatsApp Video 2025-03-03 at 20.10.10_f2acbb81.mp4" alt="Slide 3">
+    </div>
+    <div id="scrolling-text">
+      <!-- Customize these phrases as desired -->
+      <p>Wishing you endless joy and unforgettable moments! &nbsp;&nbsp;&nbsp; Happy Birthday! &nbsp;&nbsp;&nbsp; May all your dreams come true!</p>
+    </div>
+  </div>
+
+  <!-- Background Music (replace "music.mp3" with your chosen file) -->
+ <div id="spotify-container">
+    <iframe src="https://open.spotify.com/embed/track/6bbeergMzBhwYDJECGRlT6?autoplay=1" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  </div>
+
+  <script>
+    // Get the countdown element
+    const countdownElement = document.getElementById("countdown");
+
+    // Calculate next birthday date (March 4)
+    function getNextBirthday() {
+      const today = new Date();
+      let year = today.getFullYear();
+      const birthday = new Date(year, 2, 4); // Month is 0-indexed (2 = March)
+      if (today > birthday) {
+        birthday.setFullYear(year + 1);
+      }
+      return birthday;
+    }
+
+    let targetDate = getNextBirthday();
+
+    // Update the countdown every second
+    const countdownInterval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate.getTime() - now;
+
+      if (distance < 0) {
+        clearInterval(countdownInterval);
+        countdownElement.innerHTML = "Happy Birthday!";
+        // Start transition when countdown reaches 0
+        openDoors();
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+    }, 1000);
+
+    // Function to animate doors and switch to diaporama
+    function openDoors() {
+      // Play background music
+      const music = document.getElementById("bg-music");
+      music.play();
+
+      // Show doors and trigger the animation
+      const doors = document.getElementById("doors");
+      doors.style.display = "block";
+      setTimeout(() => {
+        document.getElementById("left-door").classList.add("open-left");
+        document.getElementById("right-door").classList.add("open-right");
+      }, 50);
+
+      // After the door animation (2 seconds), hide doors and countdown, show diaporama
+      setTimeout(() => {
+        document.getElementById("countdown-container").style.display = "none";
+        doors.style.display = "none";
+        document.getElementById("diaporama").style.display = "block";
+        startSlideshow();
+      }, 2050);
+    }
+
+    // Slideshow functionality
+    let slideIndex = 0;
+    function startSlideshow() {
+      const slides = document.querySelectorAll("#slideshow .slide");
+      if (!slides.length) return;
+      slides.forEach(slide => slide.style.display = "none");
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1; }
+      slides[slideIndex - 1].style.display = "block";
+      // Change slide every 3 seconds; adjust as needed
+      setTimeout(startSlideshow, 3000);
+    }
+  </script>
+</body>
+</html>
